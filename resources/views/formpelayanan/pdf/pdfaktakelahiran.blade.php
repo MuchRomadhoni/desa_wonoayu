@@ -1,0 +1,1 @@
+<h1> Nama bayi : {{$aktakelahiran->nama_kepala_keluarga}}</h1>

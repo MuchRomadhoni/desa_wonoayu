@@ -1,0 +1,1 @@
+<h1> Nama Pemohon : {{$kk->nama_lengkap}}</h1>

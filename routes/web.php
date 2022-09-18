@@ -36,6 +36,9 @@ Route::view('formaktakelahiran', 'formpelayanan.formaktakelahiran');
 Route::post('formaktakelahiran/store', 'PermohonanController@aktakelahiranstore');
 
 Route::view('formaktakematian', 'formpelayanan.formaktakematian');
+Route::post('formaktakematian/store', 'PermohonanController@aktakematianstore');
+
+
 Route::view('pelaporankematian', 'formpelayanan.pelaporankematian');
 Route::view('persyaratan', 'formpelayanan.persyaratan');
 Route::view('suratpernyataan', 'formpelayanan.suratpernyataan');
@@ -116,6 +119,11 @@ Route::middleware('auth')->group(function () {
     Route::get('admin/aktakelahiran', 'PermohonanController@aktakelahiranindex');
     Route::get('admin/aktakelahiran/{aktakelahiran:id}', 'PermohonanController@aktakelahirantopdf')->name('aktakelahiran.pdf');
     Route::delete('admin/aktakelahiran/{aktakelahiran:id}/delete', 'PermohonanController@aktakelahirandestroy')->name('aktakelahiran.destroy');
+    //aktakematian
+    Route::get('admin/aktakematian', 'PermohonanController@aktakematianindex');
+    Route::get('admin/aktakematian/{aktakematian:id}', 'PermohonanController@aktakematiantopdf')->name('aktakematian.pdf');
+    Route::delete('admin/aktakematian/{aktakematian:id}/delete', 'PermohonanController@aktakematiandestroy')->name('aktakematian.destroy');
+
 });
 
 

@@ -7,7 +7,7 @@
     <div class="row px-0">
         @include('component.alertlayanan')
     </div>
-    <form action="/formaktakelahiran/store" method="post">
+    <form action="formaktakelahiran/store" method="post">
         {{csrf_field()}}
         <div class="form-row">
             <div class="form-group col-md-6">

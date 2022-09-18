@@ -57,7 +57,7 @@
                 <input type="text" class="form-control" id="nama_anggota" name="nama_anggota" required>
             </div>
         <div class="form-group">
-            <label for="no_ktp">Nomor KTP/NIK/label>
+            <label for="no_ktp">Nomor KTP/NIK</label>
             <input type="text" class="form-control" id="no_ktp" name="no_ktp" required>
         </div>
         <div class="form-row">

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\ktp;
 use App\kk;
 use App\aktakelahiran;
+use App\aktakematian;
 
 use Illuminate\Http\Request;
 
@@ -39,8 +40,9 @@ class PermohonanController extends Controller
 
         return redirect('formktp');
     }
-    public function ktptopdf(Ktp $ktp){
-        $result = \PDF::loadview('formpelayanan.pdf.pdfktp',compact('ktp'));
+    public function ktptopdf(Ktp $ktp)
+    {
+        $result = \PDF::loadview('formpelayanan.pdf.pdfktp', compact('ktp'));
         return $result->stream('KTP');
     }
     public function ktpdestroy(Ktp $ktp)
@@ -51,7 +53,7 @@ class PermohonanController extends Controller
     }
 
     //KK
-        public function kkindex()
+    public function kkindex()
     {
         return view('formpelayanan.admin.adminkk', [
             'morekk' => kk::latest()->paginate(15),
@@ -77,8 +79,9 @@ class PermohonanController extends Controller
 
         return redirect('formkk');
     }
-    public function kktopdf(kk $kk){
-        $result = \PDF::loadview('formpelayanan.pdf.pdfkk',compact('kk'));
+    public function kktopdf(kk $kk)
+    {
+        $result = \PDF::loadview('formpelayanan.pdf.pdfkk', compact('kk'));
         return $result->stream('KK');
     }
     public function kkdestroy(kk $kk)
@@ -89,10 +92,10 @@ class PermohonanController extends Controller
     }
 
     //aktakelahiran
-        public function aktakelahiranindex()
+    public function aktakelahiranindex()
     {
         return view('formpelayanan.admin.adminaktakelahiran', [
-            'moreaktakelahiran' => kk::latest()->paginate(15),
+            'moreaktakelahiran' => aktakelahiran::latest()->paginate(15),
         ]);
     }
     public function aktakelahiranstore(Request $request)
@@ -123,8 +126,9 @@ class PermohonanController extends Controller
 
         return redirect('formaktakelahiran');
     }
-    public function aktakelahirantopdf(aktakelahiran $aktakelahiran){
-        $result = \PDF::loadview('formpelayanan.pdf.pdfaktakelahiran',compact('aktakelahiran'));
+    public function aktakelahirantopdf(aktakelahiran $aktakelahiran)
+    {
+        $result = \PDF::loadview('formpelayanan.pdf.pdfaktakelahiran', compact('aktakelahiran'));
         return $result->stream('aktakelahiran');
     }
     public function aktakelahirandestroy(aktakelahiran $aktakelahiran)
@@ -132,5 +136,41 @@ class PermohonanController extends Controller
         $aktakelahiran->delete();
         session()->flash('success', 'Data berhasil dihapus');
         return redirect('admin/aktakelahiran');
+    }
+
+    //aktakematian
+    public function aktakematianindex()
+    {
+        return view('formpelayanan.admin.adminaktakematian', [
+            
+        ]);
+    }
+    public function aktakematianstore(Request $request)
+    {
+        
+        // $attr = request()->validate([
+           
+        // ]);
+
+        $attr = $request->all();
+        // dd($attr);
+
+        //create new post
+        aktakematian::create($attr);
+
+        session()->flash('success', 'Form berhasil di upload, silahkan konfirmasi pada pihak desa melalui tombol "Konfirmasi" dibawah ini');
+
+        return redirect('formaktakematian');
+    }
+    public function aktakematiantopdf(aktakematian $aktakematian)
+    {
+        $result = \PDF::loadview('formpelayanan.pdf.pdfaktakematian', compact('aktakematian'));
+        return $result->stream('aktakematian');
+    }
+    public function aktakematiandestroy(aktakematian $aktakematian)
+    {
+        $aktakematian->delete();
+        session()->flash('success', 'Data berhasil dihapus');
+        return redirect('admin/aktakematian');
     }
 }
